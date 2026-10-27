@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHACHA ELECTRON</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#f5f7fa;
+}
+
+header{
+background:linear-gradient(135deg,#004aad,#00c6ff);
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:42px;
+}
+
+header p{
+margin-top:10px;
+font-size:18px;
+}
+
+.container{
+width:95%;
+max-width:1300px;
+margin:auto;
+}
+
+.registration{
+background:white;
+margin:30px auto;
+padding:25px;
+max-width:500px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.registration h2{
+text-align:center;
+margin-bottom:15px;
+}
+
+.registration input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.registration button{
+width:100%;
+padding:12px;
+background:#004aad;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:17px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.product{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.product:hover{
+transform:translateY(-5px);
+}
+
+.product img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.product-content{
+padding:15px;
+text-align:center;
+}
+
+.product-content h3{
+margin-bottom:10px;
+}
+
+.price{
+font-size:20px;
+color:green;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.product button{
+background:#28a745;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.cart{
+background:white;
+margin:30px auto;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 12px rgba(0,0,0,0.1);
+max-width:700px;
+}
+
+.cart h2{
+text-align:center;
+margin-bottom:15px;
+}
+
+#cartItems li{
+padding:8px;
+border-bottom:1px solid #ddd;
+}
+
+#total{
+font-size:24px;
+color:#004aad;
+font-weight:bold;
+}
+
+.pay-btn{
+margin-top:15px;
+width:100%;
+padding:15px;
+background:#34b233;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:18px;
+}
+
+.contact{
+background:#003366;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:30px;
+}
+
+.contact-buttons a{
+display:inline-block;
+margin:10px;
+padding:12px 20px;
+border-radius:8px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.call{
+background:#2196F3;
+}
+
+.sms{
+background:#ff9800;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+h2.section-title{
+text-align:center;
+margin-bottom:20px;
+color:#003366;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>CHACHA ELECTRON</h1>
+<p>Phones, Laptops, TVs, Speakers, Gaming Consoles & More</p>
+</header>
+
+<div class="container">
+
+<div class="registration">
+
+<h2>Create Account</h2>
+
+<input type="text" id="fullname" placeholder="Full Names">
+
+<input type="text" id="idnumber" placeholder="ID Number">
+
+<input type="password" id="password" placeholder="Create New Password">
+
+<input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+<button onclick="registerUser()">Create Account</button>
+
+<p id="message" style="text-align:center;margin-top:10px;"></p>
+
+</div>
+
+<h2 class="section-title">Available Electronics</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800" alt="Phone">
+<div class="product-content">
+<h3>Smartphone</h3>
+<div class="price">KES 15,000</div>
+<button onclick="addToCart('Smartphone',15000)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800" alt="Laptop">
+<div class="product-content">
+<h3>Laptop</h3>
+<div class="price">KES 55,000</div>
+<button onclick="addToCart('Laptop',55000)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800" alt="TV">
+<div class="product-content">
+<h3>Smart TV</h3>
+<div class="price">KES 42,000</div>
+<button onclick="addToCart('Smart TV',42000)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" alt="Headphones">
+<div class="product-content">
+<h3>Headphones</h3>
+<div class="price">KES 4,500</div>
+<button onclick="addToCart('Headphones',4500)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800" alt="Gaming Console">
+<div class="product-content">
+<h3>Gaming Console</h3>
+<div class="price">KES 38,000</div>
+<button onclick="addToCart('Gaming Console',38000)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?w=800" alt="Speaker">
+<div class="product-content">
+<h3>Bluetooth Speaker</h3>
+<div class="price">KES 3,500</div>
+<button onclick="addToCart('Bluetooth Speaker',3500)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800" alt="Printer">
+<div class="product-content">
+<h3>Printer</h3>
+<div class="price">KES 12,000</div>
+<button onclick="addToCart('Printer',12000)">Add To Basket</button>
+</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800" alt="Camera">
+<div class="product-content">
+<h3>Digital Camera</h3>
+<div class="price">KES 28,000</div>
+<button onclick="addToCart('Camera',28000)">Add To Basket</button>
+</div>
+</div>
+
+</div>
+
+<div class="cart">
+
+<h2>Shopping Basket</h2>
+
+<ul id="cartItems"></ul>
+
+<h3>Total: KES <span id="total">0</span></h3>
+
+<button class="pay-btn" onclick="payNow()">
+PAY WITH M-PESA
+</button>
+
+</div>
+
+</div>
+
+<div class="contact">
+
+<h2>CHACHA ELECTRON CONTACTS</h2>
+
+<p>M-Pesa Number: <strong>0799446312</strong></p>
+
+<p>Call, SMS or WhatsApp Us</p>
+
+<div class="contact-buttons">
+
+<a class="call" href="tel:0799446312">
+📞 Call
+</a>
+
+<a class="sms" href="sms:0799446312">
+📩 SMS
+</a>
+
+<a class="whatsapp"
+href="https://wa.me/254799446312?text=Hello%20CHACHA%20ELECTRON"
+target="_blank">
+💬 WhatsApp
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+let total = 0;
+
+function registerUser(){
+
+let fullname =
+document.getElementById("fullname").value;
+
+let idnumber =
+document.getElementById("idnumber").value;
+
+let password =
+document.getElementById("password").value;
+
+let confirmPassword =
+document.getElementById("confirmPassword").value;
+
+if(fullname==="" || idnumber==="" || password===""){
+document.getElementById("message").innerHTML =
+"Please fill all fields.";
+document.getElementById("message").style.color="red";
+return;
+}
+
+if(password !== confirmPassword){
+document.getElementById("message").innerHTML =
+"Passwords do not match.";
+document.getElementById("message").style.color="red";
+return;
+}
+
+document.getElementById("message").innerHTML =
+"Account Created Successfully!";
+document.getElementById("message").style.color="green";
+
+}
+
+function addToCart(product, price){
+
+let li = document.createElement("li");
+
+li.innerHTML = product + " - KES " + price;
+
+document.getElementById("cartItems").appendChild(li);
+
+total += price;
+
+document.getElementById("total").innerHTML = total;
+
+}
+
+function payNow(){
+
+alert(
+"CHACHA ELECTRON\n\n" +
+"Proceed with M-Pesa Payment\n\n" +
+"Send Money To:\n0799446312\n\n" +
+"Amount: KES " + total + "\n\n" +
+"After Payment Contact Us On WhatsApp."
+);
+
+window.open(
+"https://wa.me/254799446312?text=Hello%20CHACHA%20ELECTRON,%20I%20have%20made%20my%20payment.",
+"_blank"
+);
+
+}
+
+</script>
+
+</body>
+</html>
